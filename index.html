@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExamLab — Luyện đề trắc nghiệm</title>
+<meta name="description" content="Ứng dụng trắc nghiệm khách quan đa khoá học, nhiều mức độ. Làm bài trên điện thoại hoặc trình duyệt, có chế độ ngoại tuyến.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#12121A">
+
+  <meta property="og:title" content="ExamLab — Luyện đề trắc nghiệm">
+  <meta property="og:description" content="Nhiều khoá học, nhiều mức độ. Làm bài trên điện thoại hoặc trình duyệt, có chế độ ngoại tuyến.">
+  <meta property="og:image" content="https://mittohoa.github.io/examlab-web/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <img class="logo" src="apple-touch-icon.png" alt="ExamLab" width="46" height="46">
+  <div class="name">ExamLab</div>
+  <div class="lang">
+    <button onclick="setLang('vi')" aria-pressed="true" id="b-vi">Tiếng Việt</button>
+    <button onclick="setLang('en')" aria-pressed="false" id="b-en">English</button>
+  </div>
+</header>
+
+<div lang="vi">
+  <h1>Luyện đề trắc nghiệm, theo dõi tiến bộ</h1>
+  <p class="muted" style="font-size:17px">
+    Nhiều khoá học, nhiều mức độ. Làm bài trên điện thoại hoặc ngay trong trình duyệt.
+    Tải đề về làm khi không có mạng, nộp lại khi có sóng.
+  </p>
+
+  <p style="margin:26px 0">
+    <a class="btn" href="app/">Mở ứng dụng trên web</a>
+  </p>
+
+  <h2>Có gì</h2>
+  <ul>
+    <li>Sáu loại câu hỏi: một đáp án, nhiều đáp án, đúng/sai, điền khuyết, sắp xếp, ghép cặp</li>
+    <li>Hỗ trợ công thức toán, đoạn code có tô màu và hình ảnh trong đề</li>
+    <li>Đếm ngược theo giờ máy chủ, tự lưu nháp — rớt mạng không mất bài</li>
+    <li>Điểm kinh nghiệm, cấp độ, chuỗi ngày học và huy hiệu</li>
+    <li>Bảng xếp hạng tự nguyện — mặc định tắt</li>
+    <li>Tiếng Việt và tiếng Anh, có chế độ tối</li>
+  </ul>
+
+  <h2>Chấm điểm ở máy chủ</h2>
+  <p>Đáp án không bao giờ được gửi xuống máy trong lúc bạn đang làm bài, và điểm số
+  chỉ do máy chủ tính. Bài làm ngoại tuyến được chấm lại khi đồng bộ — kết quả của
+  máy chủ mới là kết quả chính thức.</p>
+
+  <h2>Liên kết</h2>
+  <ul>
+    <li><a href="privacy.html">Chính sách quyền riêng tư</a></li>
+    <li><a href="delete-account.html">Xoá tài khoản</a></li>
+  </ul>
+</div>
+
+<div lang="en">
+  <h1>Practice quizzes, track your progress</h1>
+  <p class="muted" style="font-size:17px">
+    Many courses, many difficulty levels. Take quizzes on your phone or right in the
+    browser. Download a quiz to work offline and submit when you reconnect.
+  </p>
+
+  <p style="margin:26px 0">
+    <a class="btn" href="app/">Open the web app</a>
+  </p>
+
+  <h2>What's inside</h2>
+  <ul>
+    <li>Six question types: single answer, multiple answers, true/false, fill in the blank, ordering, matching</li>
+    <li>Maths formulas, syntax-highlighted code and images inside questions</li>
+    <li>Server-driven countdown and autosaved drafts — losing signal doesn't lose your work</li>
+    <li>XP, levels, day streaks and badges</li>
+    <li>Opt-in leaderboard — off by default</li>
+    <li>Vietnamese and English, with dark mode</li>
+  </ul>
+
+  <h2>Marking happens on the server</h2>
+  <p>Answer keys are never sent to your device while you take a quiz, and scores are
+  computed only on the server. Offline attempts are re-marked on sync — the server's
+  result is the official one.</p>
+
+  <h2>Links</h2>
+  <ul>
+    <li><a href="privacy.html">Privacy policy</a></li>
+    <li><a href="delete-account.html">Delete your account</a></li>
+  </ul>
+</div>
+
+<footer>
+  ExamLab ·
+  <a href="privacy.html"><span lang="vi">Chính sách quyền riêng tư</span><span lang="en">Privacy policy</span></a> ·
+  <a href="delete-account.html"><span lang="vi">Xoá tài khoản</span><span lang="en">Delete account</span></a>
+</footer>
+
+</div>
+
+<script>
+function setLang(code) {
+  document.body.classList.toggle('en', code === 'en');
+  document.documentElement.lang = code;
+  document.getElementById('b-vi').setAttribute('aria-pressed', code === 'vi');
+  document.getElementById('b-en').setAttribute('aria-pressed', code === 'en');
+  try { localStorage.setItem('examlab-lang', code); } catch (e) {}
+}
+try {
+  var saved = localStorage.getItem('examlab-lang');
+  setLang(saved ? saved : ((navigator.language || '').indexOf('vi') === 0 ? 'vi' : 'en'));
+} catch (e) { setLang('vi'); }
+</script>
+
+</body>
+</html>
