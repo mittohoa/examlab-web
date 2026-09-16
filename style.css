@@ -1,0 +1,134 @@
+/* ExamLab — trang tĩnh phát hành kèm app trên GitHub Pages.
+   Dùng lại bảng màu của app để hai bên trông cùng một sản phẩm. */
+
+:root {
+  --seed: #5a4bff;
+  --bg: #fafafc;
+  --surface: #ffffff;
+  --text: #16161d;
+  --muted: #5f5f6e;
+  --border: #e3e3ea;
+  --warn-bg: #fff4e5;
+  --warn-fg: #9a5b00;
+  --radius: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101014;
+    --surface: #17171d;
+    --text: #f2f2f5;
+    --muted: #a0a0b0;
+    --border: #2a2a33;
+    --warn-bg: #3a2a10;
+    --warn-fg: #ffc46b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 20px 80px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; }
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 34px 0 26px;
+}
+
+.logo {
+  width: 46px; height: 46px;
+  border-radius: 13px;
+  display: block;
+}
+
+header .name { font-weight: 800; font-size: 19px; letter-spacing: -0.4px; }
+
+h1 { font-size: 30px; letter-spacing: -0.8px; margin: 10px 0 6px; }
+h2 { font-size: 19px; letter-spacing: -0.3px; margin: 34px 0 10px; }
+h3 { font-size: 16px; margin: 22px 0 6px; }
+
+p, li { color: var(--text); }
+.muted { color: var(--muted); font-size: 14.5px; }
+
+a { color: var(--seed); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin: 18px 0;
+}
+
+.notice {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  margin: 18px 0;
+}
+
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 15px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 700; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); }
+
+/* Bảng dữ liệu dài hơn màn hình điện thoại phải cuộn trong khung của nó,
+   không được đẩy cả trang trôi ngang. */
+.table-scroll { overflow-x: auto; }
+
+code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-size: 14px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--seed);
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px 22px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.btn:hover { text-decoration: none; opacity: 0.92; }
+.btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn.danger { background: #e5484d; }
+
+.lang { display: flex; gap: 8px; margin-left: auto; }
+.lang button {
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  border-radius: 999px; padding: 5px 13px; cursor: pointer; font-size: 13px; font-weight: 600;
+}
+.lang button[aria-pressed="true"] { background: var(--seed); color: #fff; border-color: var(--seed); }
+
+/* Bộ chuyển ngôn ngữ.
+   Phải giới hạn trong .wrap: script cũng đặt lang cho thẻ <html>, nên luật
+   [lang="en"] không giới hạn sẽ khớp luôn <html> và ẩn sạch cả trang.
+   Dùng `revert` thay vì `block` để span/li/td giữ đúng kiểu hiển thị gốc. */
+.wrap [lang="en"] { display: none; }
+body.en .wrap [lang="vi"] { display: none; }
+body.en .wrap [lang="en"] { display: revert; }
+
+footer {
+  margin-top: 54px; padding-top: 22px;
+  border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 14px;
+}
